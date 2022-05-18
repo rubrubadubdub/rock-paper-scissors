@@ -1,1 +1,21 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Project</title>
+    <script src="main.js"></script>
+</head>
+<body>
+    <script>
+        let playerAnswer = parseInt(prompt("Please enter 1:Rock, 2:Paper, 3:Scissors"));
+        let pcAnswer = computerPlay();
+        let pcWrite = stringifyAns(pcAnswer);
+        let playerWrite = stringifyAns(playerAnswer);
+        let winner = decideWinner(playerWrite,pcWrite);
+        let $result = 'The PC played ' + pcWrite + '. You played ' + playerWrite + '. So the winner is ' + winner + '.';   
+        console.log($result);
+    </script>
+</body>
+</html>
