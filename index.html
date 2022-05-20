@@ -1,21 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors Project</title>
-    <script src="main.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.js" defer></script>
 </head>
+
 <body>
+    <div id="playground">
+        <div id="header">
+            <h1>Let's Play Rock Scissors Paper!</h1>
+            <h3>First one to win 5 games is the victor!</h3>
+        </div>
+        <div id="playContainer">
+            <div id="player" class="playbox">
+                <div class="throw rock" data-select="throw" data-type="rock">
+
+                </div>
+                <div class="throw paper" data-select="throw" data-type="paper">
+
+                </div>
+                <div class="throw scissors" data-select="throw" data-type="scissors">
+
+                </div>
+
+            </div>
+            <div id="computer" class="playbox">
+                <div class="throw rock" data-type="rock">
+
+                </div>
+                <div class="throw paper" data-type="paper">
+
+                </div>
+                <div class="throw scissors" data-type="scissors">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="scoreboard">
+        <div id="playerWins" class="scorebox">
+            <h4>Player Wins:</h4>
+            <p id="pWinCount"></p>
+        </div>
+        <div id="computerWins" class="scorebox">
+            <h4>Computer Wins:</h4>
+            <p id="cWinCount"></p>
+        </div>
+    </div>
+
     <script>
-        let playerAnswer = parseInt(prompt("Please enter 1:Rock, 2:Paper, 3:Scissors"));
-        let pcAnswer = computerPlay();
-        let pcWrite = stringifyAns(pcAnswer);
-        let playerWrite = stringifyAns(playerAnswer);
-        let winner = decideWinner(playerWrite,pcWrite);
-        let $result = 'The PC played ' + pcWrite + '. You played ' + playerWrite + '. So the winner is ' + winner + '.';   
-        console.log($result);
-    </script>
+        const selection = document.querySelectorAll('.throw');
+        const choice = document.querySelectorAll(`.throw[data-select=throw]`);
+        console.log(choice);
+
+        function addTransition(e) {
+            console.log("moused over");
+          this.classList.add('playing');
+        }
+      
+        function removeTransition(e) {
+          this.classList.remove('playing');
+        }
+
+        selection.forEach(choice => choice.addEventListener('mouseover',addTransition));
+      
+        selection.forEach(choice => choice.addEventListener('mouseleave',removeTransition));
+
+      </script>
 </body>
+
 </html>
