@@ -16,6 +16,10 @@
             <h1>Let's Play Rock Scissors Paper!</h1>
             <h3>First one to win 5 games is the victor!</h3>
         </div>
+        <div id="labels">
+            <h2 style="text-align:left; color:aliceblue;">Player</h2>
+            <h2 style="text-align:right; color:aliceblue;">Computer</h2>
+        </div>
         <div id="playContainer">
             <div id="player" class="playbox">
                 <div class="throw rock" data-select="throw" data-type="rock">
@@ -68,9 +72,9 @@
           this.classList.remove('playing');
         }
 
-        selection.forEach(choice => choice.addEventListener('mouseover',addTransition));
+        choice.forEach(choice => choice.addEventListener('mouseover',addTransition));
       
-        selection.forEach(choice => choice.addEventListener('mouseleave',removeTransition));
+        choice.forEach(choice => choice.addEventListener('mouseleave',removeTransition));
 
       </script>
 </body>
