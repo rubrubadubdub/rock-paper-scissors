@@ -14,7 +14,7 @@
     <div id="playground">
         <div id="header">
             <h1>Let's Play Rock Scissors Paper!</h1>
-            <h3>First one to win 5 games is the victor!</h3>
+            <h3 id="statusMsg">First one to win 5 games is the victor!</h3>
         </div>
         <div id="labels">
             <h2 style="text-align:left; color:aliceblue;">Player</h2>
@@ -59,23 +59,7 @@
     </div>
 
     <script>
-        const selection = document.querySelectorAll('.throw');
-        const choice = document.querySelectorAll(`.throw[data-select=throw]`);
-        console.log(choice);
-
-        function addTransition(e) {
-            console.log("moused over");
-          this.classList.add('playing');
-        }
-      
-        function removeTransition(e) {
-          this.classList.remove('playing');
-        }
-
-        choice.forEach(choice => choice.addEventListener('mouseover',addTransition));
-      
-        choice.forEach(choice => choice.addEventListener('mouseleave',removeTransition));
-
+        
       </script>
 </body>
 
