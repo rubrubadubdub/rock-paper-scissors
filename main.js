@@ -1,11 +1,15 @@
 //declare text area variables
 const statusBar = document.querySelector('#statusMsg');
-
-
 const selection = document.querySelectorAll('.throw');
 const choice = document.querySelectorAll(`.throw[data-select=throw]`);
-let round = 0;
+const playerScoreboard = document.getElementById('pWinCount');
+const pcScoreboard = document.getElementById('cWinCount');
+let round = 1;
 let choiceMade = new Boolean();
+let playerScore = 0;
+let pcScore = 0;
+
+
 
 function addTransition(e) {
 
@@ -36,20 +40,60 @@ function playRound(playerWrite,playedSec){
     let pcAnswer = computerPlay();
     let pcWrite = stringifyAns(pcAnswer);
     let winner = decideWinner(playerWrite, pcWrite);
-    if(winner == 0){winnerStringify = "a tie"}
+    if(winner == 0){winnerStringify = "neither. It's a tie"}
     if(winner == 1){winnerStringify = "the PC"}
     if(winner == 2){winnerStringify = "the Player"}
+    let pcShow = document.getElementById('computer').querySelector(`.throw[data-type="${pcWrite}"]`);
+    pcShow.classList.add('played');
     let $result = 'The PC played ' + pcWrite + '. You played ' + playerWrite + '. So the winner is ' + winnerStringify + '.';
-    console.log(playedSec);
     statusBar.textContent = $result;
-    },500);
     setTimeout(function(){
+        round = round + 1;
         playedSec.classList.remove('played');
+        pcShow.classList.remove('played');
+        statusBar.textContent = 'Ready for round ' + round + '? Make a selection.';
         choiceMade = false;
+        calcScore(winner);
         return;
-    },2500);
+    },2200);
+    },600);
 }
 
+function calcScore(win){
+    let gameEnd = new String();
+    console.log(win);
+    if (win == 0){return;}
+    if (win == 1){
+        pcScore = pcScore + 1;
+        pcScoreboard.textContent = pcScore;
+        if(pcScore > 4){
+            gameEnd = "The PC Wins!!"
+            endGame(gameEnd);
+            return;
+        } else {
+        return;
+        }
+    } else {
+        playerScore = playerScore + 1;
+        playerScoreboard.textContent = playerScore;
+        if(playerScore > 4){
+            gameEnd = "The Player Wins!!"
+            endGame(gameEnd);
+            return;
+        } else {
+        return;
+        }
+    }
+}
+
+function endGame(finalWinner){
+    choiceMade = true;
+    console.log(pcScore);
+    console.log(playerScore);
+    round = 0;
+    statusBar.textContent = 'You:' + playerScore + ' ' +  'PC:' + pcScore + ' ' + finalWinner;
+    return;
+}
 
 function computerPlay() {
 
